@@ -2,6 +2,7 @@
 
 import sys
 import math
+import time
 
 def is_prime(n):
     """
@@ -39,10 +40,11 @@ def factorize(n):
 
 if __name__ == "__main__":
     with open(sys.argv[1], "r") as f:
-        n = int(f.readline().strip())
+        for line in f:
+            n = int(line.strip())
 
-    factors = factorize(n)
-    if factors:
-        print("{}={}*{}".format(n, *factors))
-    else:
-        print("No prime factors found for {}".format(n))
+            factors = factorize(n)
+            if factors:
+                print("{}={}*{}".format(n, *factors))
+            else:
+                print("No prime factors found for {}".format(n))
