@@ -1,0 +1,30 @@
+#!/usr/bin/python3
+
+import sys
+import time
+
+def factorize(n):
+    """
+    Factorizes a natural number into a product of two smaller numbers.
+
+    Args:
+        n: The natural number to factorize.
+
+    Returns:
+        A list of tuples of the form (p, q), where p and q are factors of n.
+    """
+
+    factors = []
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            factors.append((i, n // i))
+    return factors
+
+if __name__ == "__main__":
+    with open(sys.argv[1], "r") as f:
+        numbers = [int(line.strip()) for line in f.readlines()]
+
+    for n in numbers:
+        factors = factorize(n)
+        if factors:
+            print("{}={}*{}".format(n, *factors[0]))
